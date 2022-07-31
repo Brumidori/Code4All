@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -19,7 +20,7 @@ public class Usuarios {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
-	private long id;
+	private long id_usuario;
 	
 	@NotBlank(message = "O CPF é Obrigatório!") 
 	@Size(min = 11, max = 11, message = "O CPF deve conter 11 digitos.")
@@ -52,13 +53,16 @@ public class Usuarios {
 	@NotBlank(message = "A senha é Obrigatória!") 
 	@Size(min = 6, max = 10, message = "A senha deve conter no mínimo 6 e no máximo 10 digitos.")
 	private String senha;
+	
+	@OneToOne(mappedBy = "usuario")
+	private Dados_perfil dados_perfil;
 
 	public long getId() {
-		return id;
+		return id_usuario;
 	}
 
 	public void setId(long id) {
-		this.id = id;
+		this.id_usuario = id;
 	}
 
 	public long getCpf() {
