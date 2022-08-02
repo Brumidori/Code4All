@@ -2,17 +2,14 @@ package com.socialnetwork.model;
 
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.UpdateTimestamp;
@@ -27,7 +24,7 @@ public class Usuarios {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private long id_usuario;
 	
-	@NotBlank(message = "O CPF é Obrigatório!") 
+	@NotNull(message = "O CPF é Obrigatório!") 
 	@Size(min = 11, max = 11, message = "O CPF deve conter 11 digitos.")
 	private long cpf;
 	
@@ -42,7 +39,7 @@ public class Usuarios {
 	@UpdateTimestamp
 	private LocalDateTime cadastro;
 	
-	@NotBlank(message = "A data de nascimento é Obrigatória!") 
+	@NotNull(message = "A data de nascimento é Obrigatória!") 
 	@Size(min = 8, max = 8)
 	private Date dt_nasc;
 	
@@ -60,8 +57,24 @@ public class Usuarios {
 	private String senha;
 	
 	@OneToOne(mappedBy = "usuario")
+	@JsonIgnoreProperties("usuario")
 	private DadosPerfil dados_perfil;
 	
+	@OneToOne(mappedBy = "usuario")
+	@JsonIgnoreProperties("usuario")
+	private UsuariosBloqueados usuarios_bloqueados;
+
+	public UsuariosBloqueados getUsuarios_bloqueados() {
+		return usuarios_bloqueados;
+	}
+
+	public void setUsuarios_bloqueados(UsuariosBloqueados usuarios_bloqueados) {
+		this.usuarios_bloqueados = usuarios_bloqueados;
+	}
+
+	public void setCpf(long cpf) {
+		this.cpf = cpf;
+	}
 
 	public long getId() {
 		return id_usuario;
@@ -159,6 +172,5 @@ public class Usuarios {
 		this.dados_perfil = dados_perfil;
 	}
 
-	
 	
 }
