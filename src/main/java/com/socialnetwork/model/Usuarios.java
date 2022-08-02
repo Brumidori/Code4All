@@ -1,18 +1,23 @@
-package com.socialnetwork.model_usuarios;
+package com.socialnetwork.model;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table (name = "tb_usuarios")
@@ -55,7 +60,8 @@ public class Usuarios {
 	private String senha;
 	
 	@OneToOne(mappedBy = "usuario")
-	private Dados_perfil dados_perfil;
+	private DadosPerfil dados_perfil;
+	
 
 	public long getId() {
 		return id_usuario;
@@ -72,7 +78,7 @@ public class Usuarios {
 	public void setCpf(int cpf) {
 		this.cpf = cpf;
 	}
-
+	
 	public String getNome() {
 		return nome;
 	}
@@ -137,4 +143,22 @@ public class Usuarios {
 		this.senha = senha;
 	}
 
+	public long getId_usuario() {
+		return id_usuario;
+	}
+
+	public void setId_usuario(long id_usuario) {
+		this.id_usuario = id_usuario;
+	}
+
+	public DadosPerfil getDados_perfil() {
+		return dados_perfil;
+	}
+
+	public void setDados_perfil(DadosPerfil dados_perfil) {
+		this.dados_perfil = dados_perfil;
+	}
+
+	
+	
 }

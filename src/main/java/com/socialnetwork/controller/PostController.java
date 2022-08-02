@@ -9,20 +9,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.socialnetwork.model_usuarios.Dados_perfil;
-import com.socialnetwork.repository_usuarios.Dados_perfil_repository;
-
+import com.socialnetwork.model.Post;
+import com.socialnetwork.repository.PostRepository;
 
 @RestController
-@RequestMapping ("/dados_perfil")
-@CrossOrigin (origins = "*", allowedHeaders = "*")
-public class Dados_perfil_controller {
+@RequestMapping("/post")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+public class PostController {
 
 	@Autowired
-	private Dados_perfil_repository dados_perfil_repository;
+	private PostRepository postRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<Dados_perfil>> getAll(){
-		return ResponseEntity.ok(dados_perfil_repository.findAll());
+	public ResponseEntity<List<Post>> getAll(){
+		return ResponseEntity.ok(postRepository.findAll());
 	}
 }
