@@ -9,22 +9,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.socialnetwork.model_usuarios.Usuarios;
-import com.socialnetwork.repository_usuarios.Repository_usuarios;
-
+import com.socialnetwork.model.LikePost;
+import com.socialnetwork.repository.LikePostRepository;
 
 @RestController
-@RequestMapping ("/usuarios")
-@CrossOrigin (origins = "*", allowedHeaders = "*")
-public class Controller_usuarios {
+@RequestMapping("/like-post")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+public class LikePostController {
 
 	@Autowired
-	private Repository_usuarios usuarios_repository;
+	private LikePostRepository likePostRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<Usuarios>> getAll(){
-		return ResponseEntity.ok(usuarios_repository.findAll());
+	public ResponseEntity<List<LikePost>> getAll(){
+		return ResponseEntity.ok(likePostRepository.findAll());
 	}
-
 }
-

@@ -1,4 +1,4 @@
-package com.socialnetwork.model_usuarios;
+package com.socialnetwork.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table (name = "tb_dados_perfil")
-public class Dados_perfil {
+public class DadosPerfil {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
