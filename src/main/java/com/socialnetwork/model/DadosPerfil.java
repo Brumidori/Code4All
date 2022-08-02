@@ -10,6 +10,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table (name = "tb_dados_perfil")
 public class DadosPerfil {
@@ -29,6 +31,7 @@ public class DadosPerfil {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+	@JsonIgnoreProperties("dados_perfil")
 	private Usuarios usuario;
 
 	public long getId_dados_perfil() {
