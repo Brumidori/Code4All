@@ -36,6 +36,12 @@ public class UsuariosBloqueadosController {
 		return ResponseEntity.ok(usuariosBloqueadosRepository.findAll());
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<UsuariosBloqueados> getById(@PathVariable Long id) {
+		return usuariosBloqueadosRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
+				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+	}
+	
 	@PostMapping
 	public ResponseEntity<UsuariosBloqueados> post(@Valid @RequestBody UsuariosBloqueados usuariosbloqueados){
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuariosBloqueadosRepository.save(usuariosbloqueados));
