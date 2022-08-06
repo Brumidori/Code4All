@@ -26,7 +26,7 @@ public class Usuarios {
 	
 	@NotNull(message = "O CPF é Obrigatório!") 
 	@Size(min = 11, max = 11, message = "O CPF deve conter 11 digitos.")
-	private long cpf;
+	private String cpf;
 	
 	@NotBlank(message = "O nome é Obrigatório!") 
 	@Size(min = 5, max = 100)
@@ -72,9 +72,6 @@ public class Usuarios {
 		this.usuarios_bloqueados = usuarios_bloqueados;
 	}
 
-	public void setCpf(long cpf) {
-		this.cpf = cpf;
-	}
 
 	public long getId() {
 		return id_usuario;
@@ -84,14 +81,15 @@ public class Usuarios {
 		this.id_usuario = id;
 	}
 
-	public long getCpf() {
+	
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(int cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
