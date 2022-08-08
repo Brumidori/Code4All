@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.UpdateTimestamp;
@@ -31,7 +32,7 @@ public class Post {
 	private String texto;
 	
 	@NotBlank
-	@Size(min = 3, max = 5000)
+	@Size(min = 3, max = 255)
 	private String titulo;
 	
 	@UpdateTimestamp
@@ -86,6 +87,22 @@ public class Post {
 
 	public void setUsuarios(Usuarios usuarios) {
 		this.usuarios = usuarios;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public List<Comentario> getComentario() {
+		return comentario;
+	}
+
+	public void setComentario(List<Comentario> comentario) {
+		this.comentario = comentario;
 	}
 
 

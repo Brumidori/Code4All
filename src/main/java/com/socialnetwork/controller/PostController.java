@@ -49,7 +49,7 @@ public class PostController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Post> post(@Valid @RequestBody Post post){
+	public ResponseEntity<Post> post( @Valid @RequestBody Post post){
 		return ResponseEntity.status(HttpStatus.CREATED).body(postRepository.save(post));
 	}
 	
