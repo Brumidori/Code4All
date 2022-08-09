@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -23,6 +24,7 @@ public class Endereco {
 	private Long nr_endereco;
 	
 	@NotBlank
+	@Size(min = 1, max = 20, message = "Complemento deve ter no mínimo 1 e no máximo 20 caracteres.")
 	private String complemento;
 	
 	@ManyToOne
