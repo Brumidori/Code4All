@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="projeto integrador" id="5DA5F1F9-05C2-BDC3-0D61-176224E99FD5" version="3.5">
+<createdBy>lu_ra</createdBy>
+<createdTime>2022-07-27 22:07:16 UTC</createdTime>
+<ownerDesignName>projeto integrador</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>5DA5F1F9-05C2-BDC3-0D61-176224E99FD5</designId>
+</OSDM_Design>
