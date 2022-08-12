@@ -20,54 +20,54 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.socialnetwork.model.DadosPerfil;
+import com.socialnetwork.model.ProfileData;
 import com.socialnetwork.repository.ProfileDataRepository;
 
 @RestController
-@RequestMapping("/dados_perfil")
+@RequestMapping("/profileData")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class DadosPerfilController {
+public class ProfileDataController {
 
 	@Autowired
-	private ProfileDataRepository dados_perfil_repository;
+	private ProfileDataRepository profileDataRepository;
 
 	@GetMapping
-	public ResponseEntity<List<DadosPerfil>> getAll() {
-		return ResponseEntity.ok(dados_perfil_repository.findAll());
+	public ResponseEntity<List<ProfileData>> getAll() {
+		return ResponseEntity.ok(profileDataRepository.findAll());
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<DadosPerfil> getById(@PathVariable Long id) {
-		return dados_perfil_repository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
+	public ResponseEntity<ProfileData> getById(@PathVariable Long id) {
+		return profileDataRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 
 	@GetMapping("/apelido/{apelido}")
-	public ResponseEntity<List<DadosPerfil>> getByApelido(@PathVariable String apelido) {
-		return ResponseEntity.ok(dados_perfil_repository.findAllByApelidoContainingIgnoreCase(apelido));
+	public ResponseEntity<List<ProfileData>> getByNickname(@PathVariable String nickname) {
+		return ResponseEntity.ok(profileDataRepository.findAllByNicknameContainingIgnoreCase(nickname));
 	}
 
 	@PostMapping
-	public ResponseEntity<DadosPerfil> post(@Valid @RequestBody DadosPerfil dadosperfil) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(dados_perfil_repository.save(dadosperfil));
+	public ResponseEntity<ProfileData> post(@Valid @RequestBody ProfileData profileData) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(profileDataRepository.save(profileData));
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<DadosPerfil> put(@PathVariable Long id, @Valid @RequestBody DadosPerfil dadosperfil) {
-		return dados_perfil_repository.findById(id)
-				.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(dados_perfil_repository.save(dadosperfil)))
+	public ResponseEntity<ProfileData> put(@PathVariable Long id, @Valid @RequestBody ProfileData profileData) {
+		return profileDataRepository.findById(id)
+				.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(profileDataRepository.save(profileData)))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		Optional<DadosPerfil> dadosperfil = dados_perfil_repository.findById(id);
+		Optional<ProfileData> dadosperfil = profileDataRepository.findById(id);
 
 		if (dadosperfil.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
-		dados_perfil_repository.deleteById(id);
+		profileDataRepository.deleteById(id);
 	}
 
 }

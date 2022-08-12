@@ -20,47 +20,48 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.socialnetwork.model.UsuariosBloqueados;
+import com.socialnetwork.model.BlockedUser;
 import com.socialnetwork.repository.BlockedUserRepository;
 
 @RestController
-@RequestMapping ("/usuariosbloqueados")
+@RequestMapping ("/blockedUser")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class UsuariosBloqueadosController {
+public class BlockedUserController {
 
 	@Autowired
-	private BlockedUserRepository usuariosBloqueadosRepository;
+	private BlockedUserRepository blockedUserRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<UsuariosBloqueados>> getAll(){
-		return ResponseEntity.ok(usuariosBloqueadosRepository.findAll());
+	public ResponseEntity<List<BlockedUser>> getAll(){
+		return ResponseEntity.ok(blockedUserRepository.findAll());
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<UsuariosBloqueados> getById(@PathVariable Long id) {
-		return usuariosBloqueadosRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
+	public ResponseEntity<BlockedUser> getById(@PathVariable Long id) {
+		return blockedUserRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 	
 	@PostMapping
-	public ResponseEntity<UsuariosBloqueados> post(@Valid @RequestBody UsuariosBloqueados usuariosbloqueados){
-		return ResponseEntity.status(HttpStatus.CREATED).body(usuariosBloqueadosRepository.save(usuariosbloqueados));
+	public ResponseEntity<@Valid BlockedUser> post(@Valid @RequestBody BlockedUser blockedUser){
+		return ResponseEntity.status(HttpStatus.CREATED).body(blockedUserRepository.save(blockedUser));
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<UsuariosBloqueados> put(@PathVariable Long id, @Valid @RequestBody UsuariosBloqueados usuariosbloqueados){
-		return usuariosBloqueadosRepository.findById(id).map(resposta -> ResponseEntity.status(HttpStatus.OK)
-				.body(usuariosBloqueadosRepository.save(usuariosbloqueados))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build()); 
+	public ResponseEntity<BlockedUser> put(@PathVariable Long id, @Valid @RequestBody BlockedUser blockedUser){
+		return blockedUserRepository.findById(id).map(resposta -> ResponseEntity.status(HttpStatus.OK)
+				.body(blockedUserRepository.save(blockedUser)))
+				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build()); 
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		Optional<UsuariosBloqueados> usuarios = usuariosBloqueadosRepository.findById(id);
+		Optional<BlockedUser> usuarios = blockedUserRepository.findById(id);
 		
 		if(usuarios.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		
-		usuariosBloqueadosRepository.deleteById(id);
+		blockedUserRepository.deleteById(id);
 	}
 }
