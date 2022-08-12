@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.socialnetwork.model.DadosPerfil;
-import com.socialnetwork.repository.DadosPerfilRepository;
+import com.socialnetwork.repository.ProfileDataRepository;
 
 @RestController
 @RequestMapping("/dados_perfil")
@@ -29,7 +29,7 @@ import com.socialnetwork.repository.DadosPerfilRepository;
 public class DadosPerfilController {
 
 	@Autowired
-	private DadosPerfilRepository dados_perfil_repository;
+	private ProfileDataRepository dados_perfil_repository;
 
 	@GetMapping
 	public ResponseEntity<List<DadosPerfil>> getAll() {

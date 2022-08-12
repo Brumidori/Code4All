@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.socialnetwork.model.UsuariosBloqueados;
-import com.socialnetwork.repository.UsuariosBLoqueadosRepository;
+import com.socialnetwork.repository.BlockedUserRepository;
 
 @RestController
 @RequestMapping ("/usuariosbloqueados")
@@ -29,7 +29,7 @@ import com.socialnetwork.repository.UsuariosBLoqueadosRepository;
 public class UsuariosBloqueadosController {
 
 	@Autowired
-	private UsuariosBLoqueadosRepository usuariosBloqueadosRepository;
+	private BlockedUserRepository usuariosBloqueadosRepository;
 	
 	@GetMapping
 	public ResponseEntity<List<UsuariosBloqueados>> getAll(){

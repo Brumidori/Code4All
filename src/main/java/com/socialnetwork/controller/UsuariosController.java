@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.socialnetwork.model.Usuarios;
-import com.socialnetwork.repository.UsuariosRepository;
+import com.socialnetwork.repository.UserDetailsRepository;
 
 
 @RestController
@@ -30,7 +30,7 @@ import com.socialnetwork.repository.UsuariosRepository;
 public class UsuariosController {
 
 	@Autowired
-	private UsuariosRepository usuarios_repository;
+	private UserDetailsRepository usuarios_repository;
 	
 	@GetMapping
 	public ResponseEntity<List<Usuarios>> getAll(){
