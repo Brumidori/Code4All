@@ -20,60 +20,61 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.socialnetwork.model.Usuarios;
+import com.socialnetwork.model.UserDetails;
 import com.socialnetwork.repository.UserDetailsRepository;
 
 
 @RestController
-@RequestMapping ("/usuarios")
+@RequestMapping ("/userDetails")
 @CrossOrigin (origins = "*", allowedHeaders = "*")
-public class UsuariosController {
+public class UserDetailsController {
 
 	@Autowired
-	private UserDetailsRepository usuarios_repository;
+	private UserDetailsRepository userDetailsRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<Usuarios>> getAll(){
-		return ResponseEntity.ok(usuarios_repository.findAll());
+	public ResponseEntity<List<UserDetails>> getAll(){
+		return ResponseEntity.ok(userDetailsRepository.findAll());
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuarios> getById(@PathVariable Long id){
-		return usuarios_repository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
+	public ResponseEntity<UserDetails> getById(@PathVariable Long id){
+		return userDetailsRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 		
 	}
 	
 	@GetMapping("/nome/{nome}")
-	public ResponseEntity<List<Usuarios>> getByNome(@PathVariable String nome){
-		return ResponseEntity.ok(usuarios_repository.findAllByNomeContainingIgnoreCase(nome));
+	public ResponseEntity<List<UserDetails>> getByNome(@PathVariable String name){
+		return ResponseEntity.ok(userDetailsRepository.findAllByNameContainingIgnoreCase(name));
 	}
 	
 	@GetMapping("/cpf/{cpf}")
-	public ResponseEntity<List<Usuarios>> getByCpf(@PathVariable String cpf){
-		return ResponseEntity.ok(usuarios_repository.findAllByCpfContainingIgnoreCase(cpf));
+	public ResponseEntity<List<UserDetails>> getByCpf(@PathVariable String document){
+		return ResponseEntity.ok(userDetailsRepository.findAllByDocumentContainingIgnoreCase(document));
 	}
 	
 	@PostMapping
-	public ResponseEntity<Usuarios> post(@Valid @RequestBody Usuarios usuarios){
-		return ResponseEntity.status(HttpStatus.CREATED).body(usuarios_repository.save(usuarios));
+	public ResponseEntity<UserDetails> post(@Valid @RequestBody UserDetails userDetails){
+		return ResponseEntity.status(HttpStatus.CREATED).body(userDetailsRepository.save(userDetails));
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Usuarios> put(@PathVariable Long id, @Valid @RequestBody Usuarios usuarios){
-		return usuarios_repository.findById(id).map(resposta -> ResponseEntity.status(HttpStatus.OK)
-				.body(usuarios_repository.save(usuarios))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build()); 
+	public ResponseEntity<UserDetails> put(@PathVariable Long id, @Valid @RequestBody UserDetails userDetails){
+		return userDetailsRepository.findById(id).map(resposta -> ResponseEntity.status(HttpStatus.OK)
+				.body(userDetailsRepository.save(userDetails)))
+				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build()); 
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		Optional<Usuarios> usuarios = usuarios_repository.findById(id);
+		Optional<UserDetails> usuarios = userDetailsRepository.findById(id);
 		
 		if(usuarios.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		
-		usuarios_repository.deleteById(id);
+		userDetailsRepository.deleteById(id);
 	}
 
 }
