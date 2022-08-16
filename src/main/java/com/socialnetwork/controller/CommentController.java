@@ -21,51 +21,48 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 
-import com.socialnetwork.model.Post;
-import com.socialnetwork.repository.PostRepository;
+import com.socialnetwork.model.Comment;
+import com.socialnetwork.repository.CommentRepository;
 
 @RestController
-@RequestMapping("/post")
+@RequestMapping("/comment")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class PostController {
+public class CommentController {
 
 	@Autowired
-	private PostRepository postRepository;
+	private CommentRepository commentRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<Post>> getAll(){
-		return ResponseEntity.ok(postRepository.findAll());
+	public ResponseEntity<List<Comment>> getAll(){
+		return ResponseEntity.ok(commentRepository.findAll());
 	}
 	
+
 	@GetMapping("/{id}")
-	public ResponseEntity<Post> getById(@PathVariable Long id){
-		return postRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta)).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+	public ResponseEntity<Comment> getById(@PathVariable Long id){
+		return commentRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta)).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 		
 	}	
 	
-	@GetMapping("/title/{title}")
-	public ResponseEntity<List<Post>> getByTitulo(@PathVariable String title){
-		return ResponseEntity.ok(postRepository.findAllByTitleContainingIgnoreCase(title));
-	}
 	
 	@PostMapping
-	public ResponseEntity<Post> post( @Valid @RequestBody Post post){
-		return ResponseEntity.status(HttpStatus.CREATED).body(postRepository.save(post));
+	public ResponseEntity<Comment> post(@Valid @RequestBody Comment comment){
+		return ResponseEntity.status(HttpStatus.CREATED).body(commentRepository.save(comment));
 	}
 	
 	@PutMapping
-	public ResponseEntity<Post> put(@Valid @RequestBody Post post){
-		return postRepository.findById(post.getId()).map(resposta -> ResponseEntity.status(HttpStatus.OK).body(postRepository.save(post))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+	public ResponseEntity<Comment> put(@Valid @RequestBody Comment comment){
+		return commentRepository.findById(comment.getId()).map(resposta -> ResponseEntity.status(HttpStatus.OK).body(commentRepository.save(comment))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		Optional<Post> post= postRepository.findById(id);
+		Optional<Comment> comment = commentRepository.findById(id);
 		
-		if(post.isEmpty())
+		if(comment.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		
-		postRepository.deleteById(id);
+		commentRepository.deleteById(id);
 	}
 }

@@ -2,12 +2,15 @@ package com.socialnetwork.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -64,6 +67,22 @@ public class UserDetails {
 	@OneToOne(mappedBy = "userDetails")
 	@JsonIgnoreProperties("userDetails")
 	private BlockedUser blockedUser;
+	
+	@OneToMany(mappedBy = "userDetails", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("userDetails")
+	private List<Post> post;
+	
+	@OneToMany(mappedBy = "userDetails", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("userDetails")
+	private List<Comment> comment;
+	
+	@OneToMany(mappedBy = "userDetails", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("userDetails")
+	private List<LikePost> likePost;
+	
+	@OneToMany(mappedBy = "userDetails", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("userDetails")
+	private List<LikeComment> likeComment;
 
 	public Long getId() {
 		return id;
@@ -160,6 +179,40 @@ public class UserDetails {
 	public void setBlockedUser(BlockedUser blockedUser) {
 		this.blockedUser = blockedUser;
 	}
+
+	public List<Post> getPost() {
+		return post;
+	}
+
+	public void setPost(List<Post> post) {
+		this.post = post;
+	}
+
+	public List<Comment> getComment() {
+		return comment;
+	}
+
+	public void setComment(List<Comment> comment) {
+		this.comment = comment;
+	}
+
+	public List<LikePost> getLikePost() {
+		return likePost;
+	}
+
+	public void setLikePost(List<LikePost> likePost) {
+		this.likePost = likePost;
+	}
+
+	public List<LikeComment> getLikeComment() {
+		return likeComment;
+	}
+
+	public void setLikeComment(List<LikeComment> likeComment) {
+		this.likeComment = likeComment;
+	}
+	
+	
 	
 }
 

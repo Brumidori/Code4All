@@ -10,20 +10,20 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "tb_like_comentario")
-public class LikeComentario {
+@Table(name = "tb_like_comments")
+public class LikeComment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public long id;
+	public Long id;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("likeComentario")
-	private Usuarios usuarios;
+	@JsonIgnoreProperties("likeComment")
+	private UserDetails userDetails;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("likeComentario")
-	private Comentario comentario;
+	@JsonIgnoreProperties("likeComment")
+	private Comment comment;
 
 	public long getId() {
 		return id;
@@ -33,21 +33,21 @@ public class LikeComentario {
 		this.id = id;
 	}
 
-	public Usuarios getUsuarios() {
-		return usuarios;
+	public UserDetails getUserDetails() {
+		return userDetails;
 	}
 
-	public void setUsuarios(Usuarios usuarios) {
-		this.usuarios = usuarios;
+	public void setUserDetails(UserDetails userDetails) {
+		this.userDetails = userDetails;
 	}
 
-	public Comentario getComentario() {
-		return comentario;
+	public Comment getComment() {
+		return comment;
 	}
 
-	public void setComentario(Comentario comentario) {
-		this.comentario = comentario;
+	public void setComment(Comment comment) {
+		this.comment = comment;
 	}
-	
-	
+
+		
 }
