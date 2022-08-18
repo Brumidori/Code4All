@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.socialnetwork.model.Endereco;
-import com.socialnetwork.repository.EnderecoRepository;
+import com.socialnetwork.model.TypeRoad;
+import com.socialnetwork.repository.TypeRoadRepository;
 
 @RestController
-@RequestMapping("/endereco")
+@RequestMapping("/road")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class EnderecoController {
-	
+public class TypeRoadController {
+
 	@Autowired
-	private EnderecoRepository enderecoRepository;
+	private TypeRoadRepository typeRoadRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<Endereco>>getAll(){
-		return ResponseEntity.ok(enderecoRepository.findAll());
+	public ResponseEntity<List<TypeRoad>>getAll(){
+		return ResponseEntity.ok(typeRoadRepository.findAll());
 	}
 }

@@ -12,44 +12,43 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table (name = "tb_cidade")
-public class Cidade {
+@Table (name = "tb_city")
+public class City {
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private long id_cidade;
+	private Long id;
 	
 	@NotBlank
 	@Size (min = 5, max = 255)
-	private String nome_cidade;
+	private String name_city;
 	
 	@ManyToOne
-	@JsonIgnoreProperties ("Cidade")
-	private Estado estado;
+	@JsonIgnoreProperties ("City")
+	private State state;
 
-	public long getId_cidade() {
-		return id_cidade;
+
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_cidade(long id_cidade) {
-		this.id_cidade = id_cidade;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getNome_cidade() {
-		return nome_cidade;
+	public String getName_city() {
+		return name_city;
 	}
 
-	public void setNome_cidade(String nome_cidade) {
-		this.nome_cidade = nome_cidade;
+	public void setName_city(String name_city) {
+		this.name_city = name_city;
 	}
 
-	public Estado getEstado() {
-		return estado;
+	public State getState() {
+		return state;
 	}
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
+	public void setState(State state) {
+		this.state = state;
 	}
-
-	
 }

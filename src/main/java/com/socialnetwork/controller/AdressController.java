@@ -9,20 +9,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.socialnetwork.model.Cidade;
-import com.socialnetwork.repository.CidadeRepository;
+import com.socialnetwork.model.Adress;
+import com.socialnetwork.repository.AdressRepository;
 
 @RestController
-@RequestMapping("/cidade")
+@RequestMapping("/adress")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class CidadeController {
+public class AdressController {
 	
 	@Autowired
-	private CidadeRepository cidadeRepository;
+	private AdressRepository adressRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<Cidade>>getAll(){
-		return ResponseEntity.ok(cidadeRepository.findAll());
+	public ResponseEntity<List<Adress>>getAll(){
+		return ResponseEntity.ok(adressRepository.findAll());
 	}
-
-}	
+}
