@@ -8,5 +8,5 @@ import org.springframework.data.repository.query.Param;
 import com.socialnetwork.model.Post;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
-	public List<Post> findAllByTituloContainingIgnoreCase(@Param("titulo")String titulo);
+	public List<Post> findAllByTitleContainingIgnoreCase(@Param("title")String title);
 }

@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.UpdateTimestamp;
@@ -20,35 +19,32 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name="tb_post")
-public class Post {
+@Table(name = "tb_comments")
+public class Comment {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotBlank
-	@Size(min = 3, max = 5000)
-	private String text;
-	
-	@NotBlank
 	@Size(min = 3, max = 255)
-	private String title;
+	private String textComment;
 	
 	@UpdateTimestamp
-	private LocalDateTime date;
-	
-	@Size(min = 3, max = 255)
-	private String photo;
+	private LocalDateTime dateComment;
 
 	@ManyToOne
-	@JsonIgnoreProperties("post")
+	@JsonIgnoreProperties("comment")
+	private Post post;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("comment")
 	private UserDetails userDetails;
 	
-	@OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties("post")
-	private List<Comment> comment;
-	
+	@OneToMany(mappedBy = "comment", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("comment")
+	private List<LikeComment> likeComment;
+
 	public long getId() {
 		return id;
 	}
@@ -57,36 +53,28 @@ public class Post {
 		this.id = id;
 	}
 
-	public String getText() {
-		return text;
+	public String getTextComment() {
+		return textComment;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setTextComment(String textComment) {
+		this.textComment = textComment;
 	}
 
-	public String getTitle() {
-		return title;
+	public LocalDateTime getDateComment() {
+		return dateComment;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setDateComment(LocalDateTime dateComment) {
+		this.dateComment = dateComment;
 	}
 
-	public LocalDateTime getDate() {
-		return date;
+	public Post getPost() {
+		return post;
 	}
 
-	public void setDate(LocalDateTime date) {
-		this.date = date;
-	}
-
-	public String getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(String photo) {
-		this.photo = photo;
+	public void setPost(Post post) {
+		this.post = post;
 	}
 
 	public UserDetails getUserDetails() {
@@ -97,13 +85,13 @@ public class Post {
 		this.userDetails = userDetails;
 	}
 
-	public List<Comment> getComment() {
-		return comment;
+	public List<LikeComment> getLikeComment() {
+		return likeComment;
 	}
 
-	public void setComment(List<Comment> comment) {
-		this.comment = comment;
+	public void setLikeComment(List<LikeComment> likeComment) {
+		this.likeComment = likeComment;
 	}
-
+	
 	
 }

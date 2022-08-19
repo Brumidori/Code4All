@@ -20,49 +20,45 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-
-import com.socialnetwork.model.Comentario;
-import com.socialnetwork.repository.ComentarioRepository;
+import com.socialnetwork.model.LikeComment;
+import com.socialnetwork.repository.LikeCommentRepository;
 
 @RestController
-@RequestMapping("/comentario")
+@RequestMapping("/like-comment")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class ComentarioController {
+public class LikeCommentController {
 
 	@Autowired
-	private ComentarioRepository comentarioRepository;
+	private LikeCommentRepository likeCommentRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<Comentario>> getAll(){
-		return ResponseEntity.ok(comentarioRepository.findAll());
+	public ResponseEntity<List<LikeComment>> getAll(){
+		return ResponseEntity.ok(likeCommentRepository.findAll());
 	}
-	
-
 	@GetMapping("/{id}")
-	public ResponseEntity<Comentario> getById(@PathVariable long id){
-		return comentarioRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta)).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+	public ResponseEntity<LikeComment> getById(@PathVariable Long id){
+		return likeCommentRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta)).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 		
 	}	
-	
-	
+		
 	@PostMapping
-	public ResponseEntity<Comentario> post(@Valid @RequestBody Comentario comentario){
-		return ResponseEntity.status(HttpStatus.CREATED).body(comentarioRepository.save(comentario));
+	public ResponseEntity<LikeComment> post(@Valid @RequestBody LikeComment likeComment){
+		return ResponseEntity.status(HttpStatus.CREATED).body(likeCommentRepository.save(likeComment));
 	}
 	
 	@PutMapping
-	public ResponseEntity<Comentario> put(@Valid @RequestBody Comentario comentario){
-		return comentarioRepository.findById(comentario.getId()).map(resposta -> ResponseEntity.status(HttpStatus.OK).body(comentarioRepository.save(comentario))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+	public ResponseEntity<LikeComment> put(@Valid @RequestBody LikeComment likeComment){
+		return likeCommentRepository.findById(likeComment.getId()).map(resposta -> ResponseEntity.status(HttpStatus.OK).body(likeCommentRepository.save(likeComment))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable long id) {
-		Optional<Comentario> comentario = comentarioRepository.findById(id);
+	public void delete(@PathVariable Long id) {
+		Optional<LikeComment> likeComment = likeCommentRepository.findById(id);
 		
-		if(comentario.isEmpty())
+		if(likeComment.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		
-		comentarioRepository.deleteById(id);
+		likeCommentRepository.deleteById(id);
 	}
 }
