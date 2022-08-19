@@ -9,20 +9,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.socialnetwork.model.Estado;
-import com.socialnetwork.repository.EstadoRepository;
+import com.socialnetwork.model.State;
+import com.socialnetwork.repository.StateRepository;
 
 @RestController
-@RequestMapping("/estado")
+@RequestMapping("/state")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class EstadoController {
+public class StateController {
 	
 	@Autowired
-	private EstadoRepository estadoRepository;
+	private StateRepository stateRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<Estado>>getAll(){
-		return ResponseEntity.ok(estadoRepository.findAll());
+	public ResponseEntity<List<State>>getAll(){
+		return ResponseEntity.ok(stateRepository.findAll());
 	}
 
 }
