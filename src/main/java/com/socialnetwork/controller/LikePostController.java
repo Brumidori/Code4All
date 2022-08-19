@@ -37,7 +37,7 @@ public class LikePostController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<LikePost> getById(@PathVariable long id){
+	public ResponseEntity<LikePost> getById(@PathVariable Long id){
 		return likePostRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta)).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 		
 	}	
@@ -54,7 +54,7 @@ public class LikePostController {
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable long id) {
+	public void delete(@PathVariable Long id) {
 		Optional<LikePost> likePost = likePostRepository.findById(id);
 		
 		if(likePost.isEmpty())

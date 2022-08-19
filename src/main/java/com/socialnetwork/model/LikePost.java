@@ -15,7 +15,7 @@ public class LikePost {
 	
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-private long id;
+private Long id;
 
 @ManyToOne
 @JsonIgnoreProperties("likePost")
@@ -41,11 +41,13 @@ public void setPost(Post post) {
 	this.post = post;
 }
 
-	public UserDetails getUserDetails() {
-		return userDetails;
-	}
-
-	public void setUserDetails(UserDetails userDetails) {
-		this.userDetails = userDetails;
-	}
+public UserDetails getUserDetails() {
+	return userDetails;
 }
+
+public void setUserDetails(UserDetails userDetails) {
+	this.userDetails = userDetails;
+}
+
+
+
