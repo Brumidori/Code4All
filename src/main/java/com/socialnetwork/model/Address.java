@@ -13,46 +13,46 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "tb_adress")
-public class Adress {
+@Table(name = "tb_address")
+public class Address {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_adress;
+	private Long id;
 		
 	@NotNull
-	private Long nr_adress;
+	private Long nr_address;
 	
 	@NotBlank
 	@Size(min = 1, max = 128, message = "Complemento deve ter no mínimo 1 e no máximo 20 caracteres.")
 	private String complement;
 	
 	@ManyToOne
-	@JsonIgnoreProperties ("Adress")
+	@JsonIgnoreProperties ("Address")
 	private UserDetails userDetails;
 	
 	@ManyToOne
-	@JsonIgnoreProperties ("Adress")
+	@JsonIgnoreProperties ("Address")
 	private TypeRoad typeRoad;
 	
 	@ManyToOne
-	@JsonIgnoreProperties ("Adress")
+	@JsonIgnoreProperties ("Address")
 	private District district;
 
-	public Long getId_adress() {
-		return id_adress;
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_adress(Long id_adress) {
-		this.id_adress = id_adress;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public Long getNr_adress() {
-		return nr_adress;
+	public Long getNr_address() {
+		return nr_address;
 	}
 
-	public void setNr_adress(Long nr_adress) {
-		this.nr_adress = nr_adress;
+	public void setNr_address(Long nr_address) {
+		this.nr_address = nr_address;
 	}
 
 	public String getComplement() {
