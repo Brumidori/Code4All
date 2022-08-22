@@ -1,12 +1,10 @@
 package com.socialnetwork.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.util.List;
 
 @Entity
 @Table (name = "tb_road")
@@ -18,6 +16,10 @@ public class TypeRoad {
 	
 	@JsonIgnoreProperties ("TypeRoad")
 	private String description;
+
+	@OneToMany(mappedBy = "typeRoad", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("typeRoad")
+	private List<Address> addresses;
 
 	public Long getId() {
 		return id;
@@ -33,5 +35,13 @@ public class TypeRoad {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 }

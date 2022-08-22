@@ -84,6 +84,10 @@ public class UserDetails {
 	@JsonIgnoreProperties("userDetails")
 	private List<LikeComment> likeComment;
 
+	@OneToMany(mappedBy = "userDetails", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("userDetails")
+	private List<Address> addresses;
+
 	public Long getId() {
 		return id;
 	}
@@ -211,8 +215,13 @@ public class UserDetails {
 	public void setLikeComment(List<LikeComment> likeComment) {
 		this.likeComment = likeComment;
 	}
-	
-	
-	
+
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
+	}
 }
 

@@ -1,15 +1,12 @@
 package com.socialnetwork.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.util.List;
 
 @Entity
 @Table (name = "tb_district")
@@ -26,6 +23,10 @@ public class District {
 	@ManyToOne
 	@JsonIgnoreProperties("Bairro")
 	private City city;
+
+	@OneToMany(mappedBy = "userDetails", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("userDetails")
+	private List<Address> addresses;
 
 	public Long getId() {
 		return id;
@@ -49,5 +50,13 @@ public class District {
 
 	public void setCity(City city) {
 		this.city = city;
+	}
+
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 }
