@@ -9,20 +9,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.socialnetwork.model.Seguindo;
-import com.socialnetwork.repository.SeguindoRepository;
+import com.socialnetwork.model.Followers;
+import com.socialnetwork.repository.FollowersRepository;
 
 @RestController
-@RequestMapping ("/seguindo")
+@RequestMapping ("/followers")
 @CrossOrigin (origins = "*", allowedHeaders = "*")
-public class SeguindoController {
+public class FollowersController {
 	
 	@Autowired
-	private SeguindoRepository seguindoRepository;
+	private FollowersRepository followersRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<Seguindo>> getAll(){
-		return ResponseEntity.ok(seguindoRepository .findAll());
+	public ResponseEntity<List<Followers>> getAll(){
+		return ResponseEntity.ok(followersRepository .findAll());
 	}
 
 }
