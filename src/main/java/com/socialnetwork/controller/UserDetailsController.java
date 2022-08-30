@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.socialnetwork.model.UserDetails;
+import com.socialnetwork.model.Profile;
 import com.socialnetwork.repository.UserDetailsRepository;
 
 
@@ -33,43 +33,43 @@ public class UserDetailsController {
 	private UserDetailsRepository userDetailsRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<UserDetails>> getAll(){
+	public ResponseEntity<List<Profile>> getAll(){
 		return ResponseEntity.ok(userDetailsRepository.findAll());
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<UserDetails> getById(@PathVariable Long id){
+	public ResponseEntity<Profile> getById(@PathVariable Long id){
 		return userDetailsRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 		
 	}
 	
 	@GetMapping("/nome/{nome}")
-	public ResponseEntity<List<UserDetails>> getByNome(@PathVariable String name){
+	public ResponseEntity<List<Profile>> getByNome(@PathVariable String name){
 		return ResponseEntity.ok(userDetailsRepository.findAllByNameContainingIgnoreCase(name));
 	}
 	
 	@GetMapping("/cpf/{cpf}")
-	public ResponseEntity<List<UserDetails>> getByCpf(@PathVariable String document){
+	public ResponseEntity<List<Profile>> getByCpf(@PathVariable String document){
 		return ResponseEntity.ok(userDetailsRepository.findAllByDocumentContainingIgnoreCase(document));
 	}
 	
 	@PostMapping
-	public ResponseEntity<UserDetails> post(@Valid @RequestBody UserDetails userDetails){
-		return ResponseEntity.status(HttpStatus.CREATED).body(userDetailsRepository.save(userDetails));
+	public ResponseEntity<Profile> post(@Valid @RequestBody Profile profile){
+		return ResponseEntity.status(HttpStatus.CREATED).body(userDetailsRepository.save(profile));
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<UserDetails> put(@PathVariable Long id, @Valid @RequestBody UserDetails userDetails){
+	public ResponseEntity<Profile> put(@PathVariable Long id, @Valid @RequestBody Profile profile){
 		return userDetailsRepository.findById(id).map(resposta -> ResponseEntity.status(HttpStatus.OK)
-				.body(userDetailsRepository.save(userDetails)))
+				.body(userDetailsRepository.save(profile)))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build()); 
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		Optional<UserDetails> usuarios = userDetailsRepository.findById(id);
+		Optional<Profile> usuarios = userDetailsRepository.findById(id);
 		
 		if(usuarios.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
