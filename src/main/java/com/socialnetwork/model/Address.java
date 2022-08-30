@@ -11,7 +11,15 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "tb_address")
 public class Address {
@@ -29,7 +37,8 @@ public class Address {
 	
 	@ManyToOne
 	@JsonIgnoreProperties ("Address")
-	private profile profile;
+	private Profile profile;
+
 	
 	@ManyToOne
 	@JsonIgnoreProperties ("Address")
@@ -39,51 +48,4 @@ public class Address {
 	@JsonIgnoreProperties ("Address")
 	private District district;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getNr_address() {
-		return nr_address;
-	}
-
-	public void setNr_address(Long nr_address) {
-		this.nr_address = nr_address;
-	}
-
-	public String getComplement() {
-		return complement;
-	}
-
-	public void setComplement(String complement) {
-		this.complement = complement;
-	}
-
-	public profile getUserDetails() {
-		return profile;
-	}
-
-	public void setUserDetails(profile profile) {
-		this.profile = profile;
-	}
-
-	public TypeRoad getTypeRoad() {
-		return typeRoad;
-	}
-
-	public void setTypeRoad(TypeRoad typeRoad) {
-		this.typeRoad = typeRoad;
-	}
-
-	public District getDistrict() {
-		return district;
-	}
-
-	public void setDistrict(District district) {
-		this.district = district;
-	}
 }

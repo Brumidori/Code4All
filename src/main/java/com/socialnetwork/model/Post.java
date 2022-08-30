@@ -15,10 +15,17 @@ import javax.validation.constraints.NotBlank;
 
 import javax.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="tb_post")
 public class Post {
@@ -43,67 +50,14 @@ public class Post {
 
 	@ManyToOne
 	@JsonIgnoreProperties("post")
-	private profile profile;
-	
+	private Profile profile;
+
+	@ManyToOne
+	@JsonIgnoreProperties("post")
+	private Category category;
+
 	@OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("post")
 	private List<Comment> comment;
-	
-	public long getId() {
-		return id;
-	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getText() {
-		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public LocalDateTime getDate() {
-		return date;
-	}
-
-	public void setDate(LocalDateTime date) {
-		this.date = date;
-	}
-
-	public String getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
-
-	public profile getUserDetails() {
-		return profile;
-	}
-
-	public void setUserDetails(profile profile) {
-		this.profile = profile;
-	}
-
-	public List<Comment> getComment() {
-		return comment;
-	}
-
-	public void setComment(List<Comment> comment) {
-		this.comment = comment;
-	}
-
-	
 }

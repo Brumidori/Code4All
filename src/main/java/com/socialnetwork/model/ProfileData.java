@@ -11,14 +11,23 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
 @Entity
 @Table (name = "tb_profile_data")
+
 public class ProfileData {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
-	private Long id_profile_data;
+	private Long id;
 	
 	@Size(min = 3, max = 255, message = "O nickname deve ter ao menos 3 caracteres.")
 	private String nickname;
@@ -30,48 +39,8 @@ public class ProfileData {
 	private String bio;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_user_details", referencedColumnName = "id")
+	@JoinColumn(name = "id_profile", referencedColumnName = "id")
 	@JsonIgnoreProperties("profileData")
-	private profile profile;
+	private Profile profile;
 
-	public Long getId_profile_data() {
-		return id_profile_data;
-	}
-
-	public void setId_profile_data(Long id_profile_data) {
-		this.id_profile_data = id_profile_data;
-	}
-
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
-	public String getProfilePhoto() {
-		return profilePhoto;
-	}
-
-	public void setProfilePhoto(String profilePhoto) {
-		this.profilePhoto = profilePhoto;
-	}
-
-	public String getBio() {
-		return bio;
-	}
-
-	public void setBio(String bio) {
-		this.bio = bio;
-	}
-
-	public profile getUserDetails() {
-		return profile;
-	}
-
-	public void setUserDetails(profile profile) {
-		this.profile = profile;
-	}
-	
 }

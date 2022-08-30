@@ -14,10 +14,17 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "tb_comments")
 public class Comment {
@@ -39,59 +46,11 @@ public class Comment {
 	
 	@ManyToOne
 	@JsonIgnoreProperties("comment")
-	private profile profile;
-	
+	private Profile profile;
+
 	@OneToMany(mappedBy = "comment", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("comment")
 	private List<LikeComment> likeComment;
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getTextComment() {
-		return textComment;
-	}
-
-	public void setTextComment(String textComment) {
-		this.textComment = textComment;
-	}
-
-	public LocalDateTime getDateComment() {
-		return dateComment;
-	}
-
-	public void setDateComment(LocalDateTime dateComment) {
-		this.dateComment = dateComment;
-	}
-
-	public Post getPost() {
-		return post;
-	}
-
-	public void setPost(Post post) {
-		this.post = post;
-	}
-
-	public profile getUserDetails() {
-		return profile;
-	}
-
-	public void setUserDetails(profile profile) {
-		this.profile = profile;
-	}
-
-	public List<LikeComment> getLikeComment() {
-		return likeComment;
-	}
-
-	public void setLikeComment(List<LikeComment> likeComment) {
-		this.likeComment = likeComment;
-	}
-	
 	
 }
