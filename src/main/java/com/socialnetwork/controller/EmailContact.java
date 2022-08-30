@@ -8,20 +8,19 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.socialnetwork.model.TipoContatoEmail;
-import com.socialnetwork.repository.TipoContatoEmailRepository;
+import com.socialnetwork.repository.EmailContactRepository;
 
 @RestController
-@RequestMapping ("/tipoContatoEmail")
+@RequestMapping ("/emailContact")
 @CrossOrigin (origins = "*", allowedHeaders = "*")
-public class TipoContatoEmailController {
-
+public class EmailContact {
+	
 	@Autowired
-	private TipoContatoEmailRepository tipoContatoEmailRepository;
+	private EmailContactRepository emailContactRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<TipoContatoEmail>> getAll(){
-		return ResponseEntity.ok(tipoContatoEmailRepository.findAll());
+	public ResponseEntity<List<com.socialnetwork.model.EmailContact>> getAll(){
+		return ResponseEntity.ok(emailContactRepository.findAll());
 	}
+	
 }
