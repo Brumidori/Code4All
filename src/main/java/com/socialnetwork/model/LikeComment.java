@@ -8,7 +8,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "tb_like_comments")
 public class LikeComment {
@@ -19,35 +27,10 @@ public class LikeComment {
 	
 	@ManyToOne
 	@JsonIgnoreProperties("likeComment")
-	private UserDetails userDetails;
+	private Profile profile;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("likeComment")
 	private Comment comment;
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public UserDetails getUserDetails() {
-		return userDetails;
-	}
-
-	public void setUserDetails(UserDetails userDetails) {
-		this.userDetails = userDetails;
-	}
-
-	public Comment getComment() {
-		return comment;
-	}
-
-	public void setComment(Comment comment) {
-		this.comment = comment;
-	}
-
-		
 }

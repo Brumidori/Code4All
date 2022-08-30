@@ -5,9 +5,16 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table (name = "tb_city")
 public class City {
@@ -29,35 +36,4 @@ public class City {
 	private List<District> district;
 
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName_city() {
-		return name_city;
-	}
-
-	public void setName_city(String name_city) {
-		this.name_city = name_city;
-	}
-
-	public State getState() {
-		return state;
-	}
-
-	public void setState(State state) {
-		this.state = state;
-	}
-
-	public List<District> getDistrict() {
-		return district;
-	}
-
-	public void setDistrict(List<District> district) {
-		this.district = district;
-	}
 }
