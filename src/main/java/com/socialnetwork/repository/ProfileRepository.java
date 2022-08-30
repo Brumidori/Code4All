@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import com.socialnetwork.model.Profile;
 
 
-public interface UserDetailsRepository extends JpaRepository <Profile, Long>{
+public interface ProfileRepository extends JpaRepository <Profile, Long>{
 	public List<Profile> findAllByNameContainingIgnoreCase(@Param("name") String name);
 	public List<Profile> findAllByDocumentContainingIgnoreCase(@Param("document") String document);
 }
