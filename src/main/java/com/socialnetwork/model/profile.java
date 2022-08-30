@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table (name = "tb_user_details")
-public class UserDetails {
+public class profile {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,31 +60,31 @@ public class UserDetails {
 	@Size(min = 6, max = 255, message = "A senha deve conter no mínimo 6 digitos.")
 	private String password;
 	
-	@OneToOne(mappedBy = "userDetails")
+	@OneToOne(mappedBy = "profile")
 	@JsonIgnoreProperties("userDetails")
 	private ProfileData profileData;
 	
-	@OneToOne(mappedBy = "userDetails")
+	@OneToOne(mappedBy = "profile")
 	@JsonIgnoreProperties("userDetails")
 	private BlockedUser blockedUser;
 	
-	@OneToMany(mappedBy = "userDetails", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "profile", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("userDetails")
 	private List<Post> post;
 	
-	@OneToMany(mappedBy = "userDetails", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "profile", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("userDetails")
 	private List<Comment> comment;
 	
-	@OneToMany(mappedBy = "userDetails", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "profile", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("userDetails")
 	private List<LikePost> likePost;
 	
-	@OneToMany(mappedBy = "userDetails", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "profile", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("userDetails")
 	private List<LikeComment> likeComment;
 
-	@OneToMany(mappedBy = "userDetails", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "profile", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("userDetails")
 	private List<Address> addresses;
 

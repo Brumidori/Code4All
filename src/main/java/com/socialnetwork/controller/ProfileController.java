@@ -20,61 +20,61 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.socialnetwork.model.UserDetails;
-import com.socialnetwork.repository.UserDetailsRepository;
+import com.socialnetwork.model.profile;
+import com.socialnetwork.repository.ProfileRepository;
 
 
 @RestController
-@RequestMapping ("/userDetails")
+@RequestMapping ("/profile")
 @CrossOrigin (origins = "*", allowedHeaders = "*")
-public class UserDetailsController {
+public class ProfileController {
 
 	@Autowired
-	private UserDetailsRepository userDetailsRepository;
+	private ProfileRepository profileRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<UserDetails>> getAll(){
-		return ResponseEntity.ok(userDetailsRepository.findAll());
+	public ResponseEntity<List<profile>> getAll(){
+		return ResponseEntity.ok(profileRepository.findAll());
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<UserDetails> getById(@PathVariable Long id){
-		return userDetailsRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
+	public ResponseEntity<profile> getById(@PathVariable Long id){
+		return profileRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 		
 	}
 	
-	@GetMapping("/nome/{nome}")
-	public ResponseEntity<List<UserDetails>> getByNome(@PathVariable String name){
-		return ResponseEntity.ok(userDetailsRepository.findAllByNameContainingIgnoreCase(name));
-	}
-	
+//	@GetMapping("/nome/{nome}")
+//	public ResponseEntity<List<profile>> getByNome(@PathVariable String name){
+//		return ResponseEntity.ok(profileRepository.findAllByNameContainingIgnoreCase(name));
+//	}
+
 	@GetMapping("/cpf/{cpf}")
-	public ResponseEntity<List<UserDetails>> getByCpf(@PathVariable String document){
-		return ResponseEntity.ok(userDetailsRepository.findAllByDocumentContainingIgnoreCase(document));
+	public ResponseEntity<List<profile>> getByCpf(@PathVariable String document){
+		return ResponseEntity.ok(profileRepository.findAllByDocumentContainingIgnoreCase(document));
 	}
 	
 	@PostMapping
-	public ResponseEntity<UserDetails> post(@Valid @RequestBody UserDetails userDetails){
-		return ResponseEntity.status(HttpStatus.CREATED).body(userDetailsRepository.save(userDetails));
+	public ResponseEntity<profile> post(@Valid @RequestBody profile profile){
+		return ResponseEntity.status(HttpStatus.CREATED).body(profileRepository.save(profile));
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<UserDetails> put(@PathVariable Long id, @Valid @RequestBody UserDetails userDetails){
-		return userDetailsRepository.findById(id).map(resposta -> ResponseEntity.status(HttpStatus.OK)
-				.body(userDetailsRepository.save(userDetails)))
+	public ResponseEntity<profile> put(@PathVariable Long id, @Valid @RequestBody profile profile){
+		return profileRepository.findById(id).map(resposta -> ResponseEntity.status(HttpStatus.OK)
+				.body(profileRepository.save(profile)))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build()); 
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		Optional<UserDetails> usuarios = userDetailsRepository.findById(id);
+		Optional<profile> usuarios = profileRepository.findById(id);
 		
 		if(usuarios.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		
-		userDetailsRepository.deleteById(id);
+		profileRepository.deleteById(id);
 	}
 
 }

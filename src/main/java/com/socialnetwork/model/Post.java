@@ -43,7 +43,7 @@ public class Post {
 
 	@ManyToOne
 	@JsonIgnoreProperties("post")
-	private UserDetails userDetails;
+	private profile profile;
 	
 	@OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("post")
@@ -89,12 +89,12 @@ public class Post {
 		this.photo = photo;
 	}
 
-	public UserDetails getUserDetails() {
-		return userDetails;
+	public profile getUserDetails() {
+		return profile;
 	}
 
-	public void setUserDetails(UserDetails userDetails) {
-		this.userDetails = userDetails;
+	public void setUserDetails(profile profile) {
+		this.profile = profile;
 	}
 
 	public List<Comment> getComment() {

@@ -24,7 +24,7 @@ public class Followers {
 	
 	@ManyToOne
 	@JoinColumn(name = "userDetails")
-	private UserDetails userDetails;
+	private profile profile;
 
 	public long getId_following() {
 		return id_following;
@@ -50,12 +50,12 @@ public class Followers {
 		this.id_user1 = id_user1;
 	}
 
-	public UserDetails getUserDetails() {
-		return userDetails;
+	public profile getUserDetails() {
+		return profile;
 	}
 
-	public void setUserDetails(UserDetails userDetails) {
-		this.userDetails = userDetails;
+	public void setUserDetails(profile profile) {
+		this.profile = profile;
 	}
 
 	

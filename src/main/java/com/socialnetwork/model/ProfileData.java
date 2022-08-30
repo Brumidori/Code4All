@@ -32,7 +32,7 @@ public class ProfileData {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_user_details", referencedColumnName = "id")
 	@JsonIgnoreProperties("profileData")
-	private UserDetails userDetails;
+	private profile profile;
 
 	public Long getId_profile_data() {
 		return id_profile_data;
@@ -66,12 +66,12 @@ public class ProfileData {
 		this.bio = bio;
 	}
 
-	public UserDetails getUserDetails() {
-		return userDetails;
+	public profile getUserDetails() {
+		return profile;
 	}
 
-	public void setUserDetails(UserDetails userDetails) {
-		this.userDetails = userDetails;
+	public void setUserDetails(profile profile) {
+		this.profile = profile;
 	}
 	
 }

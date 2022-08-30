@@ -57,9 +57,9 @@ public class BlockedUserController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		Optional<BlockedUser> usuarios = blockedUserRepository.findById(id);
+		Optional<BlockedUser> user = blockedUserRepository.findById(id);
 		
-		if(usuarios.isEmpty())
+		if(user.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		
 		blockedUserRepository.deleteById(id);

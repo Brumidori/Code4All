@@ -29,7 +29,7 @@ public class Address {
 	
 	@ManyToOne
 	@JsonIgnoreProperties ("Address")
-	private UserDetails userDetails;
+	private profile profile;
 	
 	@ManyToOne
 	@JsonIgnoreProperties ("Address")
@@ -63,12 +63,12 @@ public class Address {
 		this.complement = complement;
 	}
 
-	public UserDetails getUserDetails() {
-		return userDetails;
+	public profile getUserDetails() {
+		return profile;
 	}
 
-	public void setUserDetails(UserDetails userDetails) {
-		this.userDetails = userDetails;
+	public void setUserDetails(profile profile) {
+		this.profile = profile;
 	}
 
 	public TypeRoad getTypeRoad() {

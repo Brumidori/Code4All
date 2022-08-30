@@ -19,7 +19,7 @@ public class LikeComment {
 	
 	@ManyToOne
 	@JsonIgnoreProperties("likeComment")
-	private UserDetails userDetails;
+	private profile profile;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("likeComment")
@@ -33,12 +33,12 @@ public class LikeComment {
 		this.id = id;
 	}
 
-	public UserDetails getUserDetails() {
-		return userDetails;
+	public profile getUserDetails() {
+		return profile;
 	}
 
-	public void setUserDetails(UserDetails userDetails) {
-		this.userDetails = userDetails;
+	public void setUserDetails(profile profile) {
+		this.profile = profile;
 	}
 
 	public Comment getComment() {

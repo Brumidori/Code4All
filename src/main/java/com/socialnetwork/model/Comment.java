@@ -39,7 +39,7 @@ public class Comment {
 	
 	@ManyToOne
 	@JsonIgnoreProperties("comment")
-	private UserDetails userDetails;
+	private profile profile;
 	
 	@OneToMany(mappedBy = "comment", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("comment")
@@ -77,12 +77,12 @@ public class Comment {
 		this.post = post;
 	}
 
-	public UserDetails getUserDetails() {
-		return userDetails;
+	public profile getUserDetails() {
+		return profile;
 	}
 
-	public void setUserDetails(UserDetails userDetails) {
-		this.userDetails = userDetails;
+	public void setUserDetails(profile profile) {
+		this.profile = profile;
 	}
 
 	public List<LikeComment> getLikeComment() {

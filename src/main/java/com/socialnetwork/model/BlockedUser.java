@@ -35,7 +35,7 @@ public class BlockedUser {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("blockedUser")
 	@JoinColumn(name = "id_user_details", referencedColumnName = "id")
-	private UserDetails userDetails;
+	private profile profile;
 
 	public Long getId() {
 		return id;
@@ -61,12 +61,12 @@ public class BlockedUser {
 		this.blockedDescription = blockedDescription;
 	}
 
-	public UserDetails getUserDetails() {
-		return userDetails;
+	public profile getUserDetails() {
+		return profile;
 	}
 
-	public void setUserDetails(UserDetails userDetails) {
-		this.userDetails = userDetails;
+	public void setUserDetails(profile profile) {
+		this.profile = profile;
 	}
 
 }

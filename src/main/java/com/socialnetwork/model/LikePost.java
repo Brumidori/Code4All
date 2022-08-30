@@ -23,7 +23,7 @@ private Post post;
 
 @ManyToOne
 @JsonIgnoreProperties("likePost")
-private UserDetails userDetails;
+private profile profile;
 
 public long getId() {
 	return id;
@@ -41,12 +41,12 @@ public void setPost(Post post) {
 	this.post = post;
 }
 
-public UserDetails getUserDetails() {
-	return userDetails;
+public profile getUserDetails() {
+	return profile;
 }
 
-public void setUserDetails(UserDetails userDetails) {
-	this.userDetails = userDetails;
+public void setUserDetails(profile profile) {
+	this.profile = profile;
 }
 
 
