@@ -13,7 +13,7 @@ import com.socialnetwork.repository.EmailContactRepository;
 @RestController
 @RequestMapping ("/emailContact")
 @CrossOrigin (origins = "*", allowedHeaders = "*")
-public class EmailContact {
+public class EmailContactController {
 	
 	@Autowired
 	private EmailContactRepository emailContactRepository;
