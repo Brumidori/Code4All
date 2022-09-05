@@ -25,10 +25,10 @@ public class City {
 	
 	@NotBlank
 	@Size (min = 5, max = 255)
-	private String name_city;
+	private String nameCity;
 	
 	@ManyToOne
-	@JsonIgnoreProperties ("City")
+	@JsonIgnoreProperties ("city")
 	private State state;
 
 	@OneToMany(mappedBy = "city", cascade = CascadeType.REMOVE)
