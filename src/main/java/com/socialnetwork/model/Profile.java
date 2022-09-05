@@ -104,6 +104,10 @@ public class Profile {
 	@JsonIgnoreProperties("profile")
 	private List<BlockedUser> blockedUsers ;
 
+	@OneToMany(mappedBy = "profile", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("profile")
+	private List<Followers> followers ;
+
 
 }
 

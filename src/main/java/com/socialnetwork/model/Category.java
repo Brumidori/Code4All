@@ -30,7 +30,7 @@ public class Category {
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties("category")
-    private List<Category> category;
+    private List<Post> post;
 
 
 }

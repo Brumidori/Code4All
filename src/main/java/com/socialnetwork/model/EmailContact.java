@@ -26,14 +26,14 @@ public class EmailContact {
 
 	@UpdateTimestamp
 	@NotNull(message = "A data é obrigatória!")
-	private LocalDateTime date_email;
+	private LocalDateTime dateEmail;
 	
 	@NotNull
-	private LocalDateTime deadline_date;
+	private LocalDateTime deadlineDate;
 	
 	@NotNull
 	@UpdateTimestamp
-	private LocalDateTime validation_date;
+	private LocalDateTime validationDate;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("emailContact")
