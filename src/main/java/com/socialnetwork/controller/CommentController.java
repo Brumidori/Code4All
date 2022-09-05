@@ -51,8 +51,8 @@ public class CommentController {
 	}
 	
 	@PutMapping
-	public ResponseEntity<Comment> put(@Valid @RequestBody Comment comment){
-		return commentRepository.findById(comment.getId()).map(resposta -> ResponseEntity.status(HttpStatus.OK).body(commentRepository.save(comment))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+	public ResponseEntity<Comment> put(@Valid @RequestBody Comment comment, @PathVariable Long id){
+		return commentRepository.findById(id).map(resposta -> ResponseEntity.status(HttpStatus.OK).body(commentRepository.save(comment))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)

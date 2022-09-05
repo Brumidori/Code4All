@@ -59,5 +59,9 @@ public class Post {
 	@OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("post")
 	private List<Comment> comment;
+	
+	@OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("post")
+	private List<LikePost> LikePost;
 
 }

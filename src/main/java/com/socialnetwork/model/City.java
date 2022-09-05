@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
@@ -31,9 +30,5 @@ public class City {
 	@JsonIgnoreProperties ("city")
 	private State state;
 
-	@OneToMany(mappedBy = "city", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties("city")
-	private List<District> district;
-
-
+	
 }

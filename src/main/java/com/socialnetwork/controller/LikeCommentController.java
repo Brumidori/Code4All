@@ -47,8 +47,8 @@ public class LikeCommentController {
 	}
 	
 	@PutMapping
-	public ResponseEntity<LikeComment> put(@Valid @RequestBody LikeComment likeComment){
-		return likeCommentRepository.findById(likeComment.getId()).map(resposta -> ResponseEntity.status(HttpStatus.OK).body(likeCommentRepository.save(likeComment))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+	public ResponseEntity<LikeComment> put(@Valid @RequestBody LikeComment likeComment, @PathVariable Long id){
+		return likeCommentRepository.findById(id).map(resposta -> ResponseEntity.status(HttpStatus.OK).body(likeCommentRepository.save(likeComment))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)

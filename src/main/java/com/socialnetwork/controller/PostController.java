@@ -54,8 +54,8 @@ public class PostController {
 	}
 	
 	@PutMapping
-	public ResponseEntity<Post> put(@Valid @RequestBody Post post){
-		return postRepository.findById(post.getId()).map(resposta -> ResponseEntity.status(HttpStatus.OK).body(postRepository.save(post))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+	public ResponseEntity<Post> put(@Valid @RequestBody Post post, @PathVariable Long id){
+		return postRepository.findById(id).map(resposta -> ResponseEntity.status(HttpStatus.OK).body(postRepository.save(post))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
