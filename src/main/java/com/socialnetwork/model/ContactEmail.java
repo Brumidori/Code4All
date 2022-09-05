@@ -22,11 +22,11 @@ public class ContactEmail {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_contact_email;
+	private Long id;
 	
 	@NotBlank
 	@Size(min = 5, max = 500)
-	private String contact_description;
+	private String contactDescription;
 
 	@OneToMany(mappedBy = "contactEmail", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("contactEmail")

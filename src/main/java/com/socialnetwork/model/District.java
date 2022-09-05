@@ -25,7 +25,7 @@ public class District {
 	
 	@NotBlank
 	@Size(min = 1, max = 255)
-	private String name_district;
+	private String nameDistrict;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("district")
