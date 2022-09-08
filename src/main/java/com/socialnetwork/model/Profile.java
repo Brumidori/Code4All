@@ -71,10 +71,7 @@ public class Profile {
 	@OneToOne(mappedBy = "profile")
 	@JsonIgnoreProperties("profile")
 	private ProfileData profileData;
-	
-	@OneToOne(mappedBy = "profile")
-	@JsonIgnoreProperties("profile")
-	private BlockedUser blockedUser;
+
 	
 	@OneToMany(mappedBy = "profile", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("profile")

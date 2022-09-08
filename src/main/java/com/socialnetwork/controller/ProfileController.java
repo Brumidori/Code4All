@@ -29,9 +29,13 @@ import com.socialnetwork.model.Profile;
 @CrossOrigin (origins = "*", allowedHeaders = "*")
 public class ProfileController {
 
-	@Autowired
-	private ProfileRepository profileRepository;
-	
+
+	ProfileRepository profileRepository;
+
+	public ProfileController(ProfileRepository profileRepository) {
+		this.profileRepository = profileRepository;
+	}
+
 	@GetMapping
 
 	public ResponseEntity<List<Profile>> getAll(){
